@@ -67,15 +67,15 @@ npm install
 
 ### 3. Configure MySQL Database
 
--**Create Database**
+- **Create Database**
 ```bash
 CREATE DATABASE blabber_db;
 ```
--** Use Database **
+- **Use Database **
 ```bash
 USE blabber_db;
 ```
--**Create Users Table**
+- **Create Users Table**
 ```bash
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,7 +84,7 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
--**Create Messages Table**
+- **Create Messages Table**
 ```bash
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
