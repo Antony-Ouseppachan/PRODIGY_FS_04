@@ -117,26 +117,6 @@ Server will start running at:
 http://localhost:3000
 ```
 
----
-
-## 🎥 Demo
-
-> _Insert screenshots or screen recording GIF here!_  
-> Example:
-> ![Blabber Chat Demo](path-to-demo.gif)
-
----
-
-## 💡 Future Improvements
-
-- Private messaging (DMs)
-- Typing indicators ("User is typing...")
-- Emojis and GIF support
-- Notification badges
-- Admin panel to moderate chats
-
----
-
 ## 🙌 Contributing
 
 Contributions are welcome! Feel free to fork this repo and submit a pull request.
