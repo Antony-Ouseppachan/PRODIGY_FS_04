@@ -56,8 +56,8 @@ blabber-chat/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/blabber-chat.git
-cd blabber-chat
+git clone [https://github.com/your-username/blabber-chat.git](https://github.com/Antony-Ouseppachan/PRODIGY_FS_04.git)
+cd PRODIGY_FS_04
 ```
 
 ### 2. Install Dependencies
@@ -67,17 +67,29 @@ npm install
 
 ### 3. Configure MySQL Database
 
-- Create a database (e.g., `blabber_db`).
-- Create a `messages` table:
-```sql
+-- Create Database
+CREATE DATABASE blabber_db;
+
+-- Use Database
+USE blabber_db;
+
+-- Create Users Table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create Messages Table
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
+    sender_id INT NOT NULL,
     message TEXT NOT NULL,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE
 );
-```
-- (Optional) Create a `users` table if you manage logins.
+
 
 ### 4. Configure Database Connection
 
