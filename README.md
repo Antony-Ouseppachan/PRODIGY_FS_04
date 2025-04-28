@@ -71,7 +71,7 @@ npm install
 ```bash
 CREATE DATABASE blabber_db;
 ```
-- **Use Database **
+- **Use Database**
 ```bash
 USE blabber_db;
 ```
