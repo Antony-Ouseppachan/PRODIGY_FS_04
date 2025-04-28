@@ -16,7 +16,7 @@ const io = socketIo(server);
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Antony@1010',
+  password: 'YOUR_PASSWORD', //Mysql Password
   database: 'blabber_db'
 });
 
@@ -26,7 +26,7 @@ db.connect((err) => {
 });
 
 app.use(session({
-  secret: '7d60ae7c71fc2d55aad8ce32b515a767a3485b35bc8c2b9eb1e36a4355a558a52f635d5f9bec200d0b66155ea0c1d6712f23b162284885ea533828509d811a70',  // Secret for session encryption
+  secret: 'YOUR_SESSION_KEY',  // Secret for session encryption
   resave: false,
   saveUninitialized: true
 }));
