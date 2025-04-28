@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blabber Chat</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+        <h1 style="margin: 0;">Welcome, <%= user.username %>!</h1>
+        <form action="/logout" method="POST" style="margin: 0;">
+            <button class="logout" type="submit">Logout</button>
+        </form>
+    </div>
+    <div class="time" id="currentTime"></div>
+
+    <div class="main-content">
+    <div class="chat-section">
+    <div class="chat-container">
+        <textarea id="message" class="input-field" placeholder="Say hello!"></textarea>
+        <button class="send-button" onclick="sendMessage()">Send</button>
+    </div>
+
+    <div class="chat-wrapper">
+        <div class="chat-header">Blabber Chat</div>
+        <div id="chatWindow">
+            <% messages.forEach(msg => { %>
+                <div><strong><%= msg.username %> [<%= msg.timestamp %>]:</strong> <%= msg.message %></div>
+            <% }) %>
+            <p>-------previous chat history--------</p>
+        </div>
+        <button class="scroll-button" onclick="scrolldown()">
+            <i class="fas fa-arrow-down">&nbsp;&nbsp;&nbsp;&nbsp;</i>Latest
+        </button>
+    </div>
+    </div>  
+    
+    <div class="banner-section">
+        <img class="banner" src="/media/banner.png" alt="Banner Image">
+    </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        const socket = io();
+
+        socket.emit('join', <%= user.id %>);
+
+        function sendMessage() {
+            const message = document.getElementById('message').value.trim();
+            if (message === "") return;
+
+            const now = new Date();
+            const timestamp = now.toISOString().slice(0, 19).replace('T', ' ');
+
+            socket.emit('sendMessage', {
+                username: "<%= user.username %>",
+                timestamp: timestamp,
+                message: message
+            });
+
+            document.getElementById('message').value = "";
+        }
+
+        socket.on('receiveMessage', (data) => {
+            const chatWindow = document.getElementById('chatWindow');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.innerHTML = `<strong>${data.username}</strong> [${data.timestamp}]: ${data.message}`;
+
+            chatWindow.appendChild(messageElement);
+
+            chatWindow.scrollTo({
+                top: chatWindow.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+
+        function scrolldown() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.scrollTo({
+                top: chatWindow.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        document.getElementById('message').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' && !event.shiftKey) { 
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const day = now.toLocaleDateString(undefined, options);
+            const time = now.toLocaleTimeString();
+            document.getElementById('currentTime').textContent = `${day}, ${time}`;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
