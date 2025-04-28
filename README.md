@@ -67,21 +67,25 @@ npm install
 
 ### 3. Configure MySQL Database
 
--- Create Database
+-- Create Database --
+```bash
 CREATE DATABASE blabber_db;
-
+```
 -- Use Database
+```bash
 USE blabber_db;
-
+```
 -- Create Users Table
+```bash
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
+```
 -- Create Messages Table
+```bash
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sender_id INT NOT NULL,
@@ -89,8 +93,7 @@ CREATE TABLE messages (
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
-
+```
 
 ### 4. Configure Database Connection
 
