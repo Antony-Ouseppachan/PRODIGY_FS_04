@@ -91,6 +91,7 @@ CREATE TABLE messages (
 );
 
 
+
 ### 4. Configure Database Connection
 
 In your `server.js` (or a separate config file), set your MySQL credentials:
