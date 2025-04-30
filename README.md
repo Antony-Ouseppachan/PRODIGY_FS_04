@@ -131,7 +131,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 📞 Contact
 
-- GitHub: [your-username](https://github.com/Antony-Ouseppachan)
+- GitHub: [Antony-Ouseppachan](https://github.com/Antony-Ouseppachan)
 
 ---
 
