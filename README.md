@@ -56,7 +56,7 @@ blabber-chat/
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/your-username/blabber-chat.git](https://github.com/Antony-Ouseppachan/PRODIGY_FS_04.git)
+git clone https://github.com/Antony-Ouseppachan/PRODIGY_FS_04.git
 cd PRODIGY_FS_04
 ```
 
